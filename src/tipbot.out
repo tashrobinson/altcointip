@@ -1,0 +1,256 @@
+INFO:cointipbot:CointipBot::init_logging(): -------------------- logging initialized --------------------
+DEBUG:cointipbot:CointipBot::connect_db(): connecting to database...
+INFO:cointipbot:CointipBot::connect_db(): connected to database gotcrypto as gotcryptouser123
+DEBUG:cointipbot:CtbCoin::__init__(): connecting to CryptogenicBullion...
+DEBUG:bitcoin:Read 6 parameters from /root/.CryptogenicBullion/CryptogenicBullion.conf
+DEBUG:bitcoin:Making HTTP connection to 127.0.0.1:8395
+INFO:cointipbot:CtbCoin::__init__():: connected to CryptogenicBullion
+INFO:cointipbot:Setting tx fee of 0.001000
+DEBUG:bitcoin:Starting "settxfee" JSON-RPC request
+DEBUG:bitcoin:Got 36 byte response from server in 4 ms
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange cryptocoincharts.info
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange www.coins-e.com
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange crypto-trade.com
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange www.bitstamp.net
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange bter.com
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange blockchain.info
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange campbx.com
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange vircurex.com
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange pubapi.cryptsy.com
+DEBUG:cointipbot:CtbExchange::__init__(): initialized exchange btc-e.com
+DEBUG:cointipbot:CointipBot::connect_reddit(): connecting to Reddit...
+INFO:cointipbot:CointipBot::connect_reddit(): logged in to Reddit as GotCrypto
+DEBUG:cointipbot:> CointipBot::init_subreddits()
+DEBUG:cointipbot:CointipBot::check_subreddits(): multi-reddit string: gotcryptotipbot
+DEBUG:cointipbot:< CointipBot::init_subreddits() DONE
+DEBUG:cointipbot:> init_regex()
+DEBUG:cointipbot:init_regex(): ADDED info: (\+)(info|balance)
+DEBUG:cointipbot:init_regex(): ADDED decline: (\+)(decline)
+DEBUG:cointipbot:init_regex(): ADDED register: (\+)(register)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_ADDRESS}(\s+){REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_ADDRESS}(\s+){REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_ADDRESS}(\s+){REGEX_COIN}{REGEX_AMOUNT}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(cgb|cryptogenicbullion|cgbs|C)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_ADDRESS}(\s+){REGEX_COIN}{REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(cgb|cryptogenicbullion|cgbs|C)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_COIN}{REGEX_AMOUNT}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(cgb|cryptogenicbullion|cgbs|C)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_COIN}{REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(cgb|cryptogenicbullion|cgbs|C)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_FIAT}{REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|cny)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(€|eur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(£|gbp)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|jpy)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(r|rur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(\$|usd)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_FIAT}{REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|cny)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(€|eur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(£|gbp)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|jpy)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(r|rur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(\$|usd)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_ADDRESS}(\s+){REGEX_FIAT}{REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|cny)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(€|eur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(£|gbp)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|jpy)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(r|rur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(\$|usd)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_ADDRESS}(\s+){REGEX_FIAT}{REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|cny)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(€|eur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(£|gbp)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|jpy)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(r|rur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(5[1-9a-z]{20,40})(\s+)(\$|usd)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_FIAT}{REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|cny)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(€|eur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(£|gbp)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|jpy)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(r|rur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(\$|usd)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_FIAT}{REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|cny)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(€|eur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(£|gbp)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|jpy)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(r|rur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(\$|usd)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_COIN}{REGEX_AMOUNT}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(cgb|cryptogenicbullion|cgbs|C)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_COIN}{REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(cgb|cryptogenicbullion|cgbs|C)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_FIAT}{REGEX_AMOUNT}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|cny)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(€|eur)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(£|gbp)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|jpy)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(r|rur)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(\$|usd)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_FIAT}{REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|cny)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(€|eur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(£|gbp)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(¥|jpy)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(r|rur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(\$|usd)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_FIAT}{REGEX_AMOUNT}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|cny)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(€|eur)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(£|gbp)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|jpy)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(r|rur)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(\$|usd)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): processing regex (\+){REGEX_TIP_INIT}(\s+){REGEX_USER}(\s+){REGEX_FIAT}{REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|cny)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(€|eur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(£|gbp)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(¥|jpy)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(r|rur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED givetip: (\+)(/u/GotCrypto|GotCrypto|gotcrypto)(\s+)(@[\w-]{3,20})(\s+)(\$|usd)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): ADDED accept: (\+)(accept)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(redeem)(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED redeem: (\+)(redeem)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED rates: (\+)(rates)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(withdraw)(\s+){REGEX_ADDRESS}(\s+){REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(withdraw)(\s+){REGEX_ADDRESS}(\s+){REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(withdraw)(\s+){REGEX_ADDRESS}(\s+){REGEX_COIN}{REGEX_AMOUNT}
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(cgb|cryptogenicbullion|cgbs|C)([0-9]{1,9}(?:\.[0-9]{0,16})?)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(withdraw)(\s+){REGEX_ADDRESS}(\s+){REGEX_COIN}{REGEX_KEYWORD}
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(cgb|cryptogenicbullion|cgbs|C)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(withdraw)(\s+){REGEX_ADDRESS}(\s+){REGEX_FIAT}{REGEX_AMOUNT}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|cny)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(€|eur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(£|gbp)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|jpy)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(r|rur)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(\$|usd)([0-9]{1,9}(?:\.[0-9]{0,16})?)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): processing regex (\+)(withdraw)(\s+){REGEX_ADDRESS}(\s+){REGEX_FIAT}{REGEX_KEYWORD}(\s+){REGEX_COIN}
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|cny)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(€|eur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(£|gbp)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(¥|jpy)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(r|rur)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED withdraw: (\+)(withdraw)(\s+)(5[1-9a-z]{20,40})(\s+)(\$|usd)(all|flip|megaflip|gigaflip|roll|megaroll|gigaroll|sushi|random01|random05|random1|random3|random5|random10|random15|random25|random50|random100|random250|random500|random1000|upvote|pi|e|leet|quarter|half|cookie|nothing|gum|beer|nicebeer|hug|kiss|nyan|highfive|fart|coffee)(\s+)(cgb|cryptogenicbullion|cgbs|C)
+DEBUG:cointipbot:init_regex(): ADDED history: (\+)(history)
+INFO:cointipbot:< init_regex() DONE (96 expressions)
+DEBUG:cointipbot:> CtbUser::__init__(gotcrypto)
+DEBUG:cointipbot:< CtbUser::__init__(gotcrypto) DONE
+DEBUG:cointipbot:> CtbUser::is_registered(gotcrypto)
+DEBUG:cointipbot:< CtbUser::is_registered(gotcrypto) DONE (yes)
+DEBUG:cointipbot:> CtbUser::balance(gotcrypto)
+INFO:cointipbot:CtbUser::balance(gotcrypto): getting cgb givetip balance
+DEBUG:cointipbot:CtbCoin::getbalance(gotcrypto, 10)
+DEBUG:bitcoin:Starting "getbalance" JSON-RPC request
+DEBUG:bitcoin:Got 42 byte response from server in 6 ms
+DEBUG:cointipbot:< CtbUser::balance(gotcrypto) DONE
+DEBUG:cointipbot:> get_actions(givetip)
+DEBUG:cointipbot:get_actions(): <SELECT * FROM t_action WHERE type = 'givetip' AND state = 'pending' AND coin = 'cgb'>
+DEBUG:cointipbot:get_actions(): found http://www.reddit.com/r/GotCryptoTipBot/comments/1xk1kc/test_1_ignore_me/cfc9vpi / cfc9vpi
+WARNING:cointipbot:get_actions(): could not fetch msg.author (deleted?) from msg_link http://www.reddit.com/r/GotCryptoTipBot/comments/1xk1kc/test_1_ignore_me/cfc9vpi
+DEBUG:cointipbot:> CtbAction::__init__({'fiat_val': 0.05, 'fiat': u'usd', 'msg_id': u'cfc9vpi', 'subr': u'GotCryptoTipBot', 'keyword': None, 'atype': 'givetip', 'self': <ctb.ctb_action.CtbAction object at 0x1bead90>, 'from_user': u'artiface', 'to_addr': None, 'to_user': u'istroll', 'ctb': <cointipbot.CointipBot object at 0x19c8e90>, 'coin_val': 0.0693246, 'msg': <praw.objects.Comment object at 0x1bed5d0>, 'coin': u'cgb'})
+DEBUG:cointipbot:> CtbUser::__init__(istroll)
+DEBUG:cointipbot:< CtbUser::__init__(istroll) DONE
+DEBUG:cointipbot:> CtbUser::__init__(artiface)
+DEBUG:cointipbot:< CtbUser::__init__(artiface) DONE
+DEBUG:cointipbot:CtbAction::__init__(): <CtbAction: type=givetip, msg.body=[deleted], from_user=<CtbUser: name=artiface, giftamnt=None, joindate=None, addr={}, redditobj=None, banned=False>, to_user=<CtbUser: name=istroll, giftamnt=None, joindate=None, addr={}, redditobj=None, banned=False>, to_addr=None, coin=cgb, fiat=usd, coin_val=0.0693246, fiat_val=0.05, subreddit=GotCryptoTipBot>
+DEBUG:cointipbot:< CtbAction::__init__(atype=givetip, from_user=artiface) DONE
+DEBUG:cointipbot:< get_actions() DONE (yes)
+DEBUG:bitcoin:Starting "getbalance" JSON-RPC request
+DEBUG:bitcoin:Got 43 byte response from server in 1 ms
+DEBUG:cointipbot:> CtbUser::__init__(artiface)
+DEBUG:cointipbot:< CtbUser::__init__(artiface) DONE
+DEBUG:cointipbot:> CtbUser::is_registered(artiface)
+DEBUG:cointipbot:< CtbUser::is_registered(artiface) DONE (yes)
+DEBUG:cointipbot:> CtbUser::__init__(gotcrypto)
+DEBUG:cointipbot:< CtbUser::__init__(gotcrypto) DONE
+DEBUG:cointipbot:> CtbUser::is_registered(gotcrypto)
+DEBUG:cointipbot:< CtbUser::is_registered(gotcrypto) DONE (yes)
+INFO:cointipbot:< CointipBot::__init__(): DONE, batch-limit = 10000, sleep-seconds = 30
+DEBUG:cointipbot:CointipBot::main(): beginning main() iteration
+DEBUG:cointipbot:CtbExchange::get_ticker_value(www.coins-e.com, cgb, btc): calling /api/v2/markets/data/ to get markets.CGB_BTC.marketstat.24h.avg_rate...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(www.coins-e.com, cgb, btc): result: 0.001103
+DEBUG:cointipbot:CtbExchange::get_ticker_value(pubapi.cryptsy.com, cgb, btc): calling /api.php?method=marketdatav2 to get return.markets.CGB/BTC.lasttradeprice...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(pubapi.cryptsy.com, cgb, btc): result: 0.001300
+DEBUG:cointipbot:CtbExchange::get_ticker_value(cryptocoincharts.info, btc, usd): calling /v2/api/tradingPair/btc_usd to get price...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(cryptocoincharts.info, btc, usd): result: 701.420000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, usd): calling /api/1/ticker/btc_usd to get data.min_ask...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, usd): result: 704.454999
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, usd): calling /api/1/ticker/btc_usd to get data.max_bid...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, usd): result: 688.888961
+DEBUG:cointipbot:CtbExchange::get_ticker_value(www.bitstamp.net, btc, usd): calling /api/ticker/ to get ask...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(www.bitstamp.net, btc, usd): result: 704.100000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, usd): calling /ticker to get USD.15m...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, usd): result: 704.100000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(campbx.com, btc, usd): calling /api/xticker.php to get Last Trade...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(campbx.com, btc, usd): result: 706.000000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(vircurex.com, btc, usd): calling /api/get_highest_bid.json?base=BTC&alt=USD to get value...
+ERROR:cointipbot:CtbExchange::get_ticker_value(vircurex.com, btc, usd): No JSON object could be decoded
+DEBUG:cointipbot:CtbExchange::get_ticker_value(btc-e.com, btc, usd): calling /api/2/btc_usd/ticker to get ticker.avg...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(btc-e.com, btc, usd): result: 410.899505
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, rub): calling /ticker to get RUB.15m...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, rub): result: 20485.383720
+DEBUG:cointipbot:CtbExchange::get_ticker_value(bter.com, btc, cny): calling /api/1/ticker/btc_cny to get avg...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(bter.com, btc, cny): result: 4226.460000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, cny): calling /ticker to get CNY.15m...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, cny): result: 3580.994900
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, jpy): calling /ticker to get JPY.15m...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, jpy): result: 58918.000000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, gbp): calling /ticker to get GBP.15m...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, gbp): result: 358.500000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(cryptocoincharts.info, btc, eur): calling /v2/api/tradingPair/btc_eur to get price...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(cryptocoincharts.info, btc, eur): result: 509.120000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, eur): calling /api/1/ticker/btc_eur to get data.min_ask...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, eur): result: 505.110000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, eur): calling /api/1/ticker/btc_eur to get data.max_bid...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(crypto-trade.com, btc, eur): result: 484.076670
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, eur): calling /ticker to get EUR.15m...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(blockchain.info, btc, eur): result: 422.000000
+DEBUG:cointipbot:CtbExchange::get_ticker_value(vircurex.com, btc, eur): calling /api/get_highest_bid.json?base=BTC&alt=EUR to get value...
+ERROR:cointipbot:CtbExchange::get_ticker_value(vircurex.com, btc, eur): No JSON object could be decoded
+DEBUG:cointipbot:CtbExchange::get_ticker_value(btc-e.com, btc, eur): calling /api/2/btc_eur/ticker to get ticker.avg...
+DEBUG:cointipbot:CtbExchange::get_ticker_value(btc-e.com, btc, eur): result: 466.804155
+DEBUG:cointipbot:CointipBot::refresh_ev(): {'cgb': {'btc': 0.001201445}, 'btc': {'usd': 653.8652475008333, 'rub': 20485.38372, 'cny': 3903.7274500000003, 'jpy': 58918.0, 'gbp': 358.5, 'eur': 473.12937250625004}}
+DEBUG:cointipbot:> CointipBot::check_inbox()
+DEBUG:cointipbot:< CointipBot::check_inbox() DONE
+DEBUG:cointipbot:> get_actions(givetip)
+DEBUG:cointipbot:get_actions(): <SELECT * FROM t_action WHERE type = 'givetip' AND state = 'pending' AND created_utc < 1391935104.0>
+DEBUG:cointipbot:< get_actions() DONE (no)
+DEBUG:cointipbot:> CointipBot::check_subreddits()
+DEBUG:cointipbot:> get_value()
+DEBUG:cointipbot:< get_value() DONE (1392089459)
+DEBUG:cointipbot:> check_action(None)
+DEBUG:cointipbot:check_action(): <SELECT * FROM t_action WHERE msg_id = 'cfc9vzg'>
+DEBUG:cointipbot:< check_action() DONE (no)
+DEBUG:cointipbot:CointipBot::check_subreddits(): checking whether user 'GotCrypto' is banned...
+DEBUG:cointipbot:> CtbUser::__init__(GotCrypto)
+DEBUG:cointipbot:< CtbUser::__init__(GotCrypto) DONE
+INFO:cointipbot:CointipBot::check_subreddits(): ignoring banned user 'GotCrypto'
+DEBUG:cointipbot:CointipBot::check_subreddits(): old comment reached
+DEBUG:cointipbot:CointipBot::check_subreddits(): 1 comments processed
+DEBUG:cointipbot:> set_value(last_processed_comment_time, 1392089816.0)
+DEBUG:cointipbot:< set_value() DONE
+DEBUG:cointipbot:< CointipBot::check_subreddits() DONE
+DEBUG:cointipbot:CointipBot::main(): sleeping for 30 seconds...
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "cointipbot.py", line 569, in main
+    time.sleep(self.conf.misc.times.sleep_seconds)
+KeyboardInterrupt

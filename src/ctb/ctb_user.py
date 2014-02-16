@@ -86,12 +86,28 @@ class CtbUser(object):
         if not bool(coin) or not bool(kind):
             raise Exception("CtbUser::balance(%s): coin or kind not set" % self.name)
 
-        # Ask coin daemon for account balance
+        
         lg.info("CtbUser::balance(%s): getting %s %s balance", self.name, coin, kind)
-        balance = self.ctb.coins[coin].getbalance(_user=self.name, _minconf=self.ctb.conf.coins[coin].minconf[kind])
-
-        lg.debug("< CtbUser::balance(%s) DONE", self.name)
-        return float(balance)
+        # Ask coin daemon for account balance
+        #balance = self.ctb.coins[coin].getbalance(_user=self.name, _minconf=self.ctb.conf.coins[coin].minconf[kind])
+        
+        #cant ask the daemon for balance because it is unrelaible
+        #get the stored balance in the database
+        
+        #first get the received by account
+        received = self.ctb.coins[coin].getreceivedbyaccount(_user=self.name, _minconf=self.ctb.conf.coins[coin].minconf[kind])
+        #look up received in database
+        sql = "SELECT * from t_addrs WHERE username = %s AND coin = %s"
+        mysqlrow = self.ctb.db.execute(sql, (self.name.lower(), coin.lower())).fetchone()
+        if not mysqlrow:
+            lg.debug("< CtbUser::get_balance(%s, %s) DONE (no)", self.name, coin)
+            return None
+        else:
+            balance = ( received + mysqlrow['tips_received'] ) - ( mysqlrow['addr_sent'] + mysqlrow['tips_sent'])
+            sql = "UPDATE t_addrs SET addr_received = %s, balance = %s WHERE username = %s AND coin = %s"
+            self.ctb.db.execute(sql, (received, balance, self.name.lower(), coin.lower()))
+            lg.debug("< CtbUser::get_balance(%s) DONE", self.name)
+            return float(balance)
 
     def get_addr(self, coin=None):
         """

@@ -55,7 +55,7 @@ class CtbCoin(object):
         lg.info("Setting tx fee of %f", self.conf.txfee)
         self.conn.settxfee(self.conf.txfee)
 
-    def getbalance(self, _user = None, _minconf = None):
+    def getbalance(self, _user = None, _minconf = None, _db = None):
         """
         Get user's tip or withdraw balance. _minconf is number of confirmations to use.
         Returns (float) balance
@@ -65,17 +65,59 @@ class CtbCoin(object):
         user = self.verify_user(_user=_user)
         minconf = self.verify_minconf(_minconf=_minconf)
         balance = float(0)
+        
+        if _db == None:
+            return balance
+
+        #try:
+        #    balance = self.conn.getbalance(user, minconf)
+        #except BitcoindException as e:
+        #    lg.error("CtbCoin.getbalance(): error getting %s (minconf=%s) balance for %s: %s", self.conf.name, minconf, user, e)
+        #    raise
+        
+        #first get the received by account
+        received = self.getreceivedbyaccount(_user=user, _minconf=minconf)
+        #look up received in database
+        sql = "SELECT * from t_addrs WHERE username = %s AND coin = %s"
+        mysqlrow = _db.execute(sql, (user, self.conf.unit)).fetchone()
+        if not mysqlrow:
+            lg.debug("< CtbCoin::getbalance(%s, %s) DONE (no)", user, coin)
+            return balance
+        else:
+            #get the balance from the database
+            balance = ( received + mysqlrow['tips_received'] ) - ( mysqlrow['addr_sent'] + mysqlrow['tips_sent'])
+            #update received and balance
+            sql = "UPDATE t_addrs SET addr_received = %s, balance = %s WHERE username = %s AND coin = %s"
+            _db.execute(sql, (received, balance, user, self.conf.unit))
+            lg.debug("< CtbCoin::getbalance(%s) DONE", user)
+            return float(balance)
+        
+        
+
+        #time.sleep(0.5)
+        #return float(balance)
+        
+    def getreceivedbyaccount(self, _user = None, _minconf = None):
+        """
+        Get user's tip or withdraw balance. _minconf is number of confirmations to use.
+        Returns (float) balance
+        """
+        lg.debug("CtbCoin::getreceivedbyaccount(%s, %s)", _user, _minconf)
+
+        user = self.verify_user(_user=_user)
+        minconf = self.verify_minconf(_minconf=_minconf)
+        received = float(0)
 
         try:
-            balance = self.conn.getbalance(user, minconf)
+            received = self.conn.getreceivedbyaccount(user, minconf)
         except BitcoindException as e:
-            lg.error("CtbCoin.getbalance(): error getting %s (minconf=%s) balance for %s: %s", self.conf.name, minconf, user, e)
+            lg.error("CtbCoin.getreceivedbyaccount(): error getting %s (minconf=%s) received for %s: %s", self.conf.name, minconf, user, e)
             raise
 
         time.sleep(0.5)
-        return float(balance)
+        return float(received)
 
-    def sendtouser(self, _userfrom = None, _userto = None, _amount = None, _minconf = 1):
+    def sendtouser(self, _userfrom = None, _userto = None, _amount = None, _minconf = 1, _db = None):
         """
         Transfer (move) coins to user
         Returns (bool)
@@ -85,31 +127,67 @@ class CtbCoin(object):
         userfrom = self.verify_user(_user=_userfrom)
         userto = self.verify_user(_user=_userto)
         amount = self.verify_amount(_amount=_amount)
-
-        # send request to coin daemon
-        try:
-            lg.info("CtbCoin::sendtouser(): moving %.9f %s from %s to %s", amount, self.conf.name, userfrom, userto)
-            result = self.conn.move(userfrom, userto, amount)
-            time.sleep(0.5)
-        except Exception as e:
-            lg.error("CtbCoin::sendtouser(): error moving %.9f %s from %s to %s: %s", amount, self.conf.name, userfrom, userto, e)
+        
+        if _db == None:
             return False
 
-        time.sleep(0.5)
+        # dont bother with the coin daemon, we're doing the move in the db
+        
+        # send request to coin daemon
+        #try:
+        #    lg.info("CtbCoin::sendtouser(): moving %.9f %s from %s to %s", amount, self.conf.name, userfrom, userto)
+        #    result = self.conn.move(userfrom, userto, amount)
+        #    time.sleep(0.5)
+        #except Exception as e:
+        #    lg.error("CtbCoin::sendtouser(): error moving %.9f %s from %s to %s: %s", amount, self.conf.name, userfrom, userto, e)
+        #    return False
+
+        #subtract the amount from _userfrom in db
+        sql = "SELECT * from t_addrs WHERE username = %s AND coin = %s"
+        mysqlrow = _db.execute(sql, (userfrom, self.conf.unit)).fetchone()
+        if not mysqlrow:
+            lg.debug("< CtbCoin::sendtouser from(%s, %s) DONE (no)", userfrom, self.conf.unit)
+            return None
+        else:
+            tipssent = mysqlrow['tips_sent']
+            tipssent += amount
+            balance = ( mysqlrow['addr_received'] + mysqlrow['tips_received'] ) - ( mysqlrow['addr_sent'] + tipssent )
+            sql = "UPDATE t_addrs SET tips_sent = %s, balance = %s WHERE username = %s AND coin = %s"
+            _db.execute(sql, (tipssent, balance, userfrom, self.conf.unit))           
+            
+        #add the ammount to _userto in db
+        sql = "SELECT * from t_addrs WHERE username = %s AND coin = %s"
+        mysqlrow = _db.execute(sql, (userto, self.conf.unit)).fetchone()
+        if not mysqlrow:
+            lg.debug("< CtbCoin::sendtouser to(%s, %s) DONE (no)", userto, self.conf.unit)
+            return None
+        else:
+            tipsrec = mysqlrow['tips_received']
+            tipsrec += amount
+            balance = ( mysqlrow['addr_received'] + tipsrec ) - ( mysqlrow['addr_sent'] + mysqlrow['tips_sent'])
+            sql = "UPDATE t_addrs SET tips_received = %s, balance = %s WHERE username = %s AND coin = %s"
+            _db.execute(sql, (tipsrec, balance, userto, self.conf.unit))       
+
         return True
 
-    def sendtoaddr(self, _userfrom = None, _addrto = None, _amount = None):
+    def sendtoaddr(self, _userfrom = None, _addrto = None, _amount = None, _db = None):
         """
         Send coins to address
         Returns (string) txid
         """
         lg.debug("CtbCoin::sendtoaddr(%s, %s, %.9f)", _userfrom, _addrto, _amount)
 
+        if _db == None:
+            return False
+        
         userfrom = self.verify_user(_user=_userfrom)
         addrto = self.verify_addr(_addr=_addrto)
         amount = self.verify_amount(_amount=_amount)
         minconf = self.verify_minconf(_minconf=self.conf.minconf.withdraw)
         txid = ""
+        
+        #TODO - add the withdrawn ammount to the addr_sent
+        
 
         # send request to coin daemon
         try:
@@ -118,17 +196,34 @@ class CtbCoin(object):
             # Unlock wallet, if applicable
             if hasattr(self.conf, 'walletpassphrase'):
                 lg.debug("CtbCoin::sendtoaddr(): unlocking wallet...")
-                self.conn.walletpassphrase(self.conf.walletpassphrase, 1)
-
+                self.conn.walletpassphrase(self.conf.walletpassphrase, 10)
+            
             # Perform transaction
-            lg.debug("CtbCoin::sendtoaddr(): calling sendfrom()...")
-            txid = self.conn.sendfrom(userfrom, addrto, amount, minconf)
-
+            lg.debug("CtbCoin::sendtoaddr(): calling sendtoaddress()...")
+            #txid = self.conn.sendfrom(userfrom, addrto, amount, minconf)
+            txid = self.conn.sendtoaddress(addrto, amount)
+            time.sleep(0.5)
+            
             # Lock wallet, if applicable
             if hasattr(self.conf, 'walletpassphrase'):
                 lg.debug("CtbCoin::sendtoaddr(): locking wallet...")
                 self.conn.walletlock()
-
+                time.sleep(0.5)
+                
+            #subtract the amount from _userfrom in db
+            sql = "SELECT * from t_addrs WHERE username = %s AND coin = %s"
+            mysqlrow = _db.execute(sql, (userfrom, self.conf.unit)).fetchone()
+            if not mysqlrow:
+                lg.debug("< CtbCoin::sendtoaddr from(%s, %s) DONE (no)", userfrom, self.conf.unit)
+                return None
+            else:
+                addrsent = mysqlrow['addr_sent']
+                addrsent += (amount + self.conf.txfee)
+                balance = ( mysqlrow['addr_received'] + mysqlrow['tips_received'] ) - ( addrsent + mysqlrow['tips_sent'])
+                sql = "UPDATE t_addrs SET addr_sent = %s, balance = %s WHERE username = %s AND coin = %s"
+                _db.execute(sql, (addrsent, balance, userfrom, self.conf.unit))      
+                
+                
         except Exception as e:
             lg.error("CtbCoin::sendtoaddr(): error sending %.9f %s from %s to %s: %s", amount, self.conf.name, userfrom, addrto, e)
             raise

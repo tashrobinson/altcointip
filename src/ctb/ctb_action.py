@@ -405,7 +405,7 @@ class CtbAction(object):
             for a in actions:
                 # Move coins back into a.u_from account
                 lg.info("CtbAction::decline(): moving %.9f %s from %s to %s", a.coinval, a.coin.upper(), self.ctb.conf.reddit.auth.user, a.u_from.name)
-                if not self.ctb.coins[a.coin].sendtouser(_userfrom=self.ctb.conf.reddit.auth.user, _userto=a.u_from.name, _amount=a.coinval):
+                if not self.ctb.coins[a.coin].sendtouser(_userfrom=self.ctb.conf.reddit.auth.user, _userto=a.u_from.name, _amount=a.coinval, _db=self.ctb.db):
                     raise Exception("CtbAction::decline(): failed to sendtouser()")
 
                 # Update transaction as declined
@@ -454,7 +454,7 @@ class CtbAction(object):
 
         # Move coins back into self.u_from account
         lg.info("CtbAction::expire(): moving %.9f %s from %s to %s", self.coinval, self.coin.upper(), self.ctb.conf.reddit.auth.user, self.u_from.name)
-        if not self.ctb.coins[self.coin].sendtouser(_userfrom=self.ctb.conf.reddit.auth.user, _userto=self.u_from.name, _amount=self.coinval):
+        if not self.ctb.coins[self.coin].sendtouser(_userfrom=self.ctb.conf.reddit.auth.user, _userto=self.u_from.name, _amount=self.coinval, _db=self.ctb.db):
             raise Exception("CtbAction::expire(): sendtouser() failed")
 
         # Update transaction as expired
@@ -564,7 +564,7 @@ class CtbAction(object):
                 # Move coins into pending account
                 minconf = self.ctb.coins[self.coin].conf.minconf.givetip
                 lg.info("CtbAction::validate(): moving %.9f %s from %s to %s (minconf=%s)...", self.coinval, self.coin.upper(), self.u_from.name, self.ctb.conf.reddit.auth.user, minconf)
-                if not self.ctb.coins[self.coin].sendtouser(_userfrom=self.u_from.name, _userto=self.ctb.conf.reddit.auth.user, _amount=self.coinval, _minconf=minconf):
+                if not self.ctb.coins[self.coin].sendtouser(_userfrom=self.u_from.name, _userto=self.ctb.conf.reddit.auth.user, _amount=self.coinval, _minconf=minconf, _db=self.ctb.db):
                     raise Exception("CtbAction::validate(): sendtouser() failed")
 
                 # Save action as pending
@@ -624,11 +624,11 @@ class CtbAction(object):
             if is_pending:
                 # This is accept() of pending transaction, so move coins from pending account to receiver
                 lg.info("CtbAction::givetip(): moving %.9f %s from %s to %s...", self.coinval, self.coin.upper(), self.ctb.conf.reddit.auth.user, self.u_to.name)
-                res = self.ctb.coins[self.coin].sendtouser(_userfrom=self.ctb.conf.reddit.auth.user, _userto=self.u_to.name, _amount=self.coinval)
+                res = self.ctb.coins[self.coin].sendtouser(_userfrom=self.ctb.conf.reddit.auth.user, _userto=self.u_to.name, _amount=self.coinval, _db=self.ctb.db)
             else:
                 # This is not accept() of pending transaction, so move coins from tipper to receiver
                 lg.info("CtbAction::givetip(): moving %.9f %s from %s to %s...", self.coinval, self.coin.upper(), self.u_from.name, self.u_to.name)
-                res = self.ctb.coins[self.coin].sendtouser(_userfrom=self.u_from.name, _userto=self.u_to.name, _amount=self.coinval)
+                res = self.ctb.coins[self.coin].sendtouser(_userfrom=self.u_from.name, _userto=self.u_to.name, _amount=self.coinval, _db=self.ctb.db)
 
             if not res:
                 # Tx failed
@@ -666,7 +666,7 @@ class CtbAction(object):
             # Process tip to address
             try:
                 lg.info("CtbAction::givetip(): sending %.9f %s to %s...", self.coinval, self.coin, self.addr_to)
-                self.txid = self.ctb.coins[self.coin].sendtoaddr(_userfrom=self.u_from.name, _addrto=self.addr_to, _amount=self.coinval)
+                self.txid = self.ctb.coins[self.coin].sendtoaddr(_userfrom=self.u_from.name, _addrto=self.addr_to, _amount=self.coinval, _db=self.ctb.db)
 
             except Exception as e:
 
@@ -719,7 +719,7 @@ class CtbAction(object):
             coininfo.coin = c
             try:
                 # Get tip balance
-                coininfo.balance = self.ctb.coins[c].getbalance(_user=self.u_from.name, _minconf=self.ctb.conf.coins[c].minconf.givetip)
+                coininfo.balance = self.ctb.coins[c].getbalance(_user=self.u_from.name, _minconf=self.ctb.conf.coins[c].minconf.givetip, _db=self.ctb.db)
                 info.append(coininfo)
             except Exception as e:
                 lg.error("CtbAction::info(%s): error retrieving %s coininfo: %s", self.u_from.name, c, e)
@@ -832,7 +832,7 @@ class CtbAction(object):
             return False
 
         # Check if redeem account has enough balance
-        funds = self.ctb.coins[self.coin].getbalance(_user=self.ctb.conf.reddit.redeem.account, _minconf=1)
+        funds = self.ctb.coins[self.coin].getbalance(_user=self.ctb.conf.reddit.redeem.account, _minconf=1, _db=self.ctb.db)
         if self.coinval > funds or abs(self.coinval - funds) < 0.000001:
             # Reply with 'not enough funds' message
             msg = self.ctb.jenv.get_template('redeem-low-funds.tpl').render(a=self, ctb=self.ctb)
@@ -842,7 +842,7 @@ class CtbAction(object):
             return False
 
         # Transfer coins
-        if self.ctb.coins[self.coin].sendtouser(_userfrom=self.ctb.conf.reddit.redeem.account, _userto=self.u_from.name, _amount=self.coinval, _minconf=1):
+        if self.ctb.coins[self.coin].sendtouser(_userfrom=self.ctb.conf.reddit.redeem.account, _userto=self.u_from.name, _amount=self.coinval, _minconf=1, _db=self.ctb.db):
             # Success, send confirmation
             msg = self.ctb.jenv.get_template('redeem-confirmation.tpl').render(a=self, ctb=self.ctb)
             lg.debug("CtbAction::redeem(): %s", msg)

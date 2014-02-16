@@ -21,11 +21,16 @@ CREATE TABLE IF NOT EXISTS `t_action` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `t_addrs` (
-  `username` varchar(30) NOT NULL,
-  `coin` varchar(3) NOT NULL,
-  `address` varchar(34) NOT NULL,
-  PRIMARY KEY (`username`,`coin`),
-  UNIQUE KEY `address` (`address`)
+ `username` varchar(30) NOT NULL,
+ `coin` varchar(3) NOT NULL,
+ `address` varchar(34) NOT NULL,
+ `addr_received` float NOT NULL DEFAULT '0',
+ `tips_received` float NOT NULL DEFAULT '0',
+ `tips_sent` float NOT NULL DEFAULT '0',
+ `addr_sent` float NOT NULL DEFAULT '0',
+ `balance` float NOT NULL DEFAULT '0',
+ PRIMARY KEY (`username`,`coin`),
+ UNIQUE KEY `address` (`address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `t_users` (
